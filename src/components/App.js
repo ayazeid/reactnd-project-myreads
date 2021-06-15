@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState, useEffect} from 'react'
 import * as BooksAPI from '../BooksAPI'
 import '../App.css'
 import {Route} from "react-router-dom";
@@ -6,98 +6,63 @@ import SearchBooks from "./SearchBooks.js";
 import Library from "./Library.js";
 
 
+function BooksApp(){
 
-class App extends Component {
-    state={
+  const [state, setState]=useState({
     shelves:[{
-    id:"currentlyReading",
-    name:"Currently Reading",
-    books:[]
-
-    },
+            id:"currentlyReading",
+            name:"Currently Reading"
+            },
            {
              id:"wantToRead",
-             name:"Want to Read",
-             books:[]
+             name:"Want to Read"
           
            },
            {id:"read",
-           name:"Read",
-           books:[]
-        
+           name:"Read"
             }
           ],
+    books:[],
     searchQuery:[]
-  }
+  });
 
-  componentDidMount(){
+  useEffect(() => {
     BooksAPI.getAll()
-    .then((books)=>{
-      this.setState((currState)=>{
-        currState.shelves.map(shelf=>
-          (
-          shelf.books= books.filter(book=> book.shelf === shelf.id )
-        ))
-      })
-      this.setState({
-        books:books
-      })
-    })
-  };
+    .then((recievedbooks)=>(
+      setState((preState)=>({...preState,
+        books:recievedbooks})
+        )
+    )); 
+  })
   
-  
-
- 
-  
-  searchForBook=(query)=>{
+  function searchForBook(query){
     BooksAPI.search(query)
         .then(response=>{
-          this.setState((prevState)=>({
+          setState((prevState)=>({
             ...prevState,
             searchQuery:response}))
         })
   };
 
-  updateBooks(book, newShelfID){ 
-    
-    BooksAPI.update(book, newShelfID)
-    .then(response=>{
-      this.setState((currState)=>{
-        currState.shelves.map(shelf=>(
-          shelf.books= response[shelf.id]
-        ))
-      })
-         })
-  }
   
- 
-  render(){
-    
-    return (
-      <div className="app">
-       <Route exact path="/" render={()=>(
-          <Library shelves={this.state.shelves}
-          onUpdate={(book, newShelfID)=>{this.updateBooks(book, newShelfID)
-          }}/>
-          
+
+ return (
+    <div className="app">
+     <Route exact path="/" render={()=>(
+        <Library shelves={state.shelves} books={state.books}/>
+    )} />
+    <Route path="/search" render={()=>(
+               <SearchBooks onSearch={(query)=>{
+                 searchForBook(query)
+               }}
+                 books={state.searchQuery}
+               />
+       )} />
        
-      )} />
-      <Route path="/search" render={()=>(
-                 <SearchBooks onSearch={(query)=>{
-                   this.searchForBook(query)
-                 }}
-                   books={this.state.searchQuery}
-                   onUpdate={(book, newShelfID)=>{
-                     this.updateBooks(book, newShelfID)
-                     
-                   } }
-                 />
-         )} />
-         
-      
-      </div>
-    );
-  }
+    
+    </div>
+  );
 }
 
-export default App;
+
+export default BooksApp;

@@ -8,6 +8,7 @@ body {
 
 body, .app {
   background: white;
+  background-image:url("https://www.transparenttextures.com/patterns/pinstripe-dark.png");
 }
 
 /* main page */
@@ -16,6 +17,7 @@ body, .app {
   padding: 10px 0;
   background: #2e7c31;
   text-align: center;
+  background-image: url("https://www.transparenttextures.com/patterns/pool-table.png");
 }
 
 .list-books-title h1 {

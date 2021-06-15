@@ -60,7 +60,6 @@ class SearchBooks extends Component{
           title={book.title} 
           author={book.author} 
           imageURL={book.imageLinks.thumbnail}
-          shelfUpdate={(book, newShelfID)=>{this.props.onUpdate(book, newShelfID)}}
           />
       )):
       (<h3>Sorry no book matchs</h3>)}

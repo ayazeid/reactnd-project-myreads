@@ -1,16 +1,15 @@
 import React from "react";
 import Select from "./Select.js";
 import PropTypes from "prop-types";
+import { update } from './../BooksAPI';
 
 
 function Book(props){
     const { book,title ,author, imageURL} = props;
     
     function updateBook(newShelfID){
-
-      props.shelfUpdate(book, newShelfID);
-        // update(book , newShelfID)
-        // .then(response=>console.log(response))
+        update(book , newShelfID)
+        .then(response=>console.log(response))
     }
         return(
                     <li >
