@@ -15,8 +15,7 @@ function SearchBooks(props){
     setSearch({query:newquery});
     
        searchForBook(searchQuery.query);
-      //  props.onSearch(query);   
-      //  console.log(query)   
+     
    }
 
 

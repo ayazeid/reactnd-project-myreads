@@ -34,18 +34,8 @@ function BooksApp(){
     )); 
   })
   
-  // function searchForBook(query){
-  //   BooksAPI.search(query)
-  //       .then((response)=>(
-  //         setState((preState)=>({...preState,
-  //           searchQuery:response})
-  //           )
-  //       ))
   
-  // console.log(state.searchQuery)    };
-
   
-
  return (
     <div className="app">
      <Route exact path="/" render={()=>(
