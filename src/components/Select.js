@@ -18,7 +18,7 @@ function Select(props){
 }
 
 Select.propTypes={
-    shelf: PropTypes.string.isRequired,
-    onUpdate: PropTypes.func.isRequired
+    shelf: PropTypes.string,
+    onUpdate: PropTypes.func
   }
 export default Select;

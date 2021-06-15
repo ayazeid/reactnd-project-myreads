@@ -15,8 +15,8 @@ function Book(props){
                     <li >
                       <div className="book">
                         <div className="book-top">
-                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageURL})` }}></div>
-                          <Select shelf={book.shelf} onUpdate={(newShelfID)=>{updateBook(newShelfID)}}/>
+                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageURL})` }}></div>        
+                          <Select shelf={(book.shelf !== undefined)? (book.shelf) : ("none")} onUpdate={(newShelfID)=>{updateBook(newShelfID)}}/>
                         </div>
                         <div className="book-title">{title}</div>
                         <div className="book-authors">{author}</div>
@@ -30,8 +30,8 @@ function Book(props){
 Book.propTypes={
   book: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  author:PropTypes.array.isRequired,
-  imageURL: PropTypes.string.isRequired
+  author:PropTypes.array,
+  imageURL: PropTypes.string
 }
 
 export default Book;

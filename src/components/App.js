@@ -22,8 +22,7 @@ function BooksApp(){
            name:"Read"
             }
           ],
-    books:[],
-    searchQuery:[]
+    books:[]
   });
 
   useEffect(() => {
@@ -35,14 +34,15 @@ function BooksApp(){
     )); 
   })
   
-  function searchForBook(query){
-    BooksAPI.search(query)
-        .then(response=>{
-          setState((prevState)=>({
-            ...prevState,
-            searchQuery:response}))
-        })
-  };
+  // function searchForBook(query){
+  //   BooksAPI.search(query)
+  //       .then((response)=>(
+  //         setState((preState)=>({...preState,
+  //           searchQuery:response})
+  //           )
+  //       ))
+  
+  // console.log(state.searchQuery)    };
 
   
 
@@ -52,11 +52,7 @@ function BooksApp(){
         <Library shelves={state.shelves} books={state.books}/>
     )} />
     <Route path="/search" render={()=>(
-               <SearchBooks onSearch={(query)=>{
-                 searchForBook(query)
-               }}
-                 books={state.searchQuery}
-               />
+               <SearchBooks/>
        )} />
        
     
