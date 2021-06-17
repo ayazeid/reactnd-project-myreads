@@ -21,6 +21,9 @@ App.js
 
 ## Some Functions and Methods:
 1-BookAPI methods provieded by Udacity.
+      * getAll() implemented in App.js
+      * search() implemented in SearchBooks.js
+      * update() implemented in Book.js
 2-Reactjs (Hooks- Class- stateless functions- lifecycles).
 3-React Router Dom.
 4-ES6 and JSX.
