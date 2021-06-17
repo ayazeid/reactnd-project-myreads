@@ -43,16 +43,29 @@ function SearchBooks(props){
     <ol className="books-grid">
     {(searchQuery.query !== "")?
     ((Array.isArray(searchQuery.result))?
-      searchQuery.result.filter(book=> book.imageLinks!== undefined).map(book=>( <Book 
+      searchQuery.result.filter(book=> book.imageLinks!== undefined).map(book=>{
+        const catigbook=props.catigorizedBooks.find(catigbook => catigbook.id === book.id )
+        if(catigbook !== undefined){
+          return(
+          <Book 
+          key={catigbook.id}
+          book={catigbook}
+          title={catigbook.title} 
+          author={catigbook.authors} 
+          imageURL={catigbook.imageLinks.thumbnail}
+          />
+        )
+        }else{
+          return( <Book 
           key={book.id}
           book={book}
           title={book.title} 
           author={book.authors} 
           imageURL={book.imageLinks.thumbnail}
-          />)):
+          />)}}):
           (<p>No Match found</p>)  ):
           (<p></p>)
-    }
+           }
     </ol>
   </div>
 </div>

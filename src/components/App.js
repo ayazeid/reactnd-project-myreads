@@ -42,7 +42,7 @@ function BooksApp(){
         <Library shelves={state.shelves} books={state.books}/>
     )} />
     <Route path="/search" render={()=>(
-               <SearchBooks/>
+               <SearchBooks catigorizedBooks={state.books}/>
        )} />
        
     
