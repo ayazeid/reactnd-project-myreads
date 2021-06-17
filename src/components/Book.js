@@ -8,9 +8,8 @@ function Book(props){
     const { book,title ,author, imageURL} = props;
     
     function updateBook(newShelfID){
-        update(book , newShelfID)
-        .then(response=>console.log(response))
-    }
+        update(book , newShelfID);
+    } 
         return(
                     <li >
                       <div className="book">
@@ -34,4 +33,4 @@ Book.propTypes={
   imageURL: PropTypes.string
 }
 
-export default Book;
+export default React.memo(Book);

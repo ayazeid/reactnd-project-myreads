@@ -32,7 +32,7 @@ function BooksApp(){
         books:recievedbooks})
         )
     )); 
-  })
+  },[state.books])
   
   
   

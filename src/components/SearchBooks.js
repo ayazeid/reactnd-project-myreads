@@ -13,8 +13,7 @@ function SearchBooks(props){
   function handleChange(e){
     const newquery=e.target.value;
     setSearch({query:newquery});
-    
-       searchForBook(searchQuery.query);
+   searchForBook(searchQuery.query);
      
    }
 
@@ -25,9 +24,9 @@ function SearchBooks(props){
           setSearch((preState)=>({...preState,
             result:response})
             )
-        ))
-  
-  console.log(searchQuery.result)    };
+        ));
+        
+     };
    
 
   return(
@@ -42,14 +41,18 @@ function SearchBooks(props){
   </div>
   <div className="search-books-results">
     <ol className="books-grid">
-    {(searchQuery.result !== undefined && searchQuery.query !== "")&&
-    searchQuery.result.filter(book=> book.imageLinks!== undefined).map(book=>( <Book 
+    {(searchQuery.query !== "")?
+    ((Array.isArray(searchQuery.result))?
+      searchQuery.result.filter(book=> book.imageLinks!== undefined).map(book=>( <Book 
           key={book.id}
           book={book}
           title={book.title} 
           author={book.authors} 
           imageURL={book.imageLinks.thumbnail}
-          />))}
+          />)):
+          (<p>No Match found</p>)  ):
+          (<p></p>)
+    }
     </ol>
   </div>
 </div>
